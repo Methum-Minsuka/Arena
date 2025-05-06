@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Election Content (Live)</title>
+</head>
+<body>
+  <h2>Election Content (Live)</h2>
+  <div id="election-results">Loading...</div>
+
+  <script>
+    fetch('proxy.php')
+      .then(response => {
+        if (!response.ok) throw new Error("Network error");
+        return response.text();
+      })
+      .then(html => {
+        document.getElementById("election-results").innerHTML = html;
+      })
+      .catch(error => {
+        document.getElementById("election-results").innerHTML = "Error loading election content: " + error.message;
+      });
+  </script>
+</body>
+</html>
